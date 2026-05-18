@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kado Untukmu - Anugrah Mikaila Cinta ❤️</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght=500;700&display=swap');
 
         * {
             margin: 0;
@@ -15,7 +15,7 @@
 
         body {
             font-family: 'Quicksand', sans-serif;
-            background-color: #f7a8b8; /* Pink background sesuai video */
+            background-color: #f7a8b8; /* Warna pink sesuai gambar & video */
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -25,13 +25,16 @@
             transition: background 1s ease;
         }
 
-        /* --- HALAMAN 1: TOMBOL KADO --- */
+        /* --- HALAMAN 1: TOMBOL KADO (DIPERBAIKI AGAR PASTI MUNCUL) --- */
         #page1 {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
+            width: 100%;
+            padding: 20px;
+            z-index: 100;
             animation: fadeIn 0.5s ease;
         }
 
@@ -40,15 +43,17 @@
             color: #ffffff;
             font-size: 2.2rem;
             margin-bottom: 25px;
-            text-shadow: 2px 2px rgba(0,0,0,0.1);
+            text-shadow: 2px 2px rgba(0,0,0,0.15);
         }
 
         .gift-box {
             font-size: 110px;
             cursor: pointer;
+            display: inline-block;
             transition: transform 0.2s;
             animation: bounce 2s infinite;
             user-select: none;
+            -webkit-user-select: none;
         }
 
         .gift-box:hover {
@@ -60,10 +65,10 @@
             color: #ffffff;
             font-weight: bold;
             font-size: 1.1rem;
-            text-shadow: 1px 1px rgba(0,0,0,0.1);
+            text-shadow: 1px 1px rgba(0,0,0,0.15);
         }
 
-        /* --- HALAMAN 2: SURAT & BUKU DINO --- */
+        /* --- HALAMAN 2: SURAT & BACKGROUND BUKU DINO --- */
         #page2 {
             display: none;
             width: 100%;
@@ -71,7 +76,7 @@
             position: relative;
         }
 
-        /* Layer Buku Dino (Berada di Belakang Surat) */
+        /* Buku Dino Tersembunyi di Belakang Layer Surat */
         .dino-book-bg {
             position: absolute;
             top: 50%;
@@ -134,7 +139,7 @@
             opacity: 0.8;
         }
 
-        /* Layer Surat Utama (Menutupi Buku) */
+        /* Layer Surat Utama yang Menutupi Buku */
         .letter-card {
             position: absolute;
             top: 50%;
@@ -146,9 +151,10 @@
             border-radius: 25px;
             padding: 35px 25px;
             text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
             z-index: 2;
             transition: opacity 0.5s ease, transform 0.5s ease;
+            cursor: pointer;
         }
 
         .main-hbd-title {
@@ -210,7 +216,7 @@
             animation: fall linear forwards;
         }
 
-        /* --- HALAMAN 3: SCREEN HITAM "ALLO" --- */
+        /* --- HALAMAN 3: SCREEN HITAM "ALLO" & BUNGA MEKAR --- */
         #page3 {
             display: none;
             flex-direction: column;
@@ -230,7 +236,6 @@
             text-shadow: 0 0 15px rgba(255,255,255,0.3);
         }
 
-        /* --- HALAMAN 4: KEBUN BUNGA MEKAR (HITAM BERBINTANG) --- */
         .garden-container {
             display: none;
             position: relative;
@@ -355,10 +360,157 @@
             transform: translate(-50%, -50%);
         }
 
-        /* Daun-daun Hijau */
+        /* Daun Bawah */
         .leaf-bush {
             position: absolute;
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width
+            width: 120px;
+            height: 40px;
+            background: #115e59;
+            border-radius: 40px 40px 0 0;
+            opacity: 0;
+            animation: fadeInBush 1s 1.5s forwards;
+        }
+
+        .star {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: #ffffff;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: blink 3s infinite ease-in-out;
+        }
+
+        .arrow-indicator {
+            font-size: 35px;
+            margin-top: 15px;
+            animation: bounceArrow 1s infinite;
+        }
+
+        /* --- ALL KEYFRAMES --- */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+        @keyframes bounceArrow { 0%, 100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(10px); opacity: 0.4; } }
+        @keyframes fall {
+            0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) translateX(40px) rotate(360deg); opacity: 0; }
+        }
+        @keyframes growStemCenter { from { height: 0; } to { height: 210px; } }
+        @keyframes growStemSide { from { height: 0; } to { height: 150px; } }
+        @keyframes bloom { to { transform: translate(-50%, -50%) scale(1); } }
+        @keyframes fadeInBush { to { opacity: 1; } }
+        @keyframes blink { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+    <div id="page1">
+        <h1 class="welcome-title">Selamat Datang 🎂</h1>
+        <div class="gift-box" onclick="goToPage2()">🎁</div>
+        <p class="click-hint">Klik kadonya yaa ✨🏽</p>
+    </div>
+
+    <div id="page2">
+        <div class="dino-book-bg">
+            <div class="book-clouds"><span>☁️</span><span>☁️</span></div>
+            <div class="book-birds"><span>🕊️</span><span>🕊️</span></div>
+            <h2 class="dino-title">ROAR<br>HAPPY BIRTHDAY</h2>
+            <div class="dino-avatar">🦕</div>
+            <div class="book-grass">🌿🌿🌿🌿🌿🌿</div>
+        </div>
+
+        <div class="letter-card" id="mainLetter" onclick="triggerButterflyShower()">
+            <h1 class="main-hbd-title">Happy Birthday</h1>
+            <div class="target-name">Anugrah Mikaila Cinta</div>
+            
+            <div class="text-exact">
+                <p>Halo!</p>
+                <p>Hari ini adalah momen yang penuh arti,</p>
+                <p>karena seseorang yang spesial merayakan</p>
+                <p>harinya.</p>
+                <br>
+                <p>Semoga perjalanan hidupmu selalu dipenuhi</p>
+                <p>kebahagiaan & cinta.</p>
+                
+                <div class="heart-sign">with love ❤</div>
+            </div>
+
+            <button class="btn-action" onclick="goToPage3(event)">🏽 Buka Kado Spesial</button>
+        </div>
+    </div>
+
+    <div id="page3">
+        <h1 class="hallo-text">ALLO</h1>
+        <button class="btn-action" id="btnClickMe" onclick="growFlowers()">Coba klik ini!!</button>
+        
+        <div class="garden-container" id="garden">
+            <div class="stem-left"><div class="flower-left"></div></div>
+            <div class="stem-right"><div class="flower-right"></div></div>
+            <div class="stem-center"><div class="flower-center"></div></div>
+            <div class="leaf-bush"></div>
+        </div>
+    </div>
+
+    <script>
+        // Masuk ke halaman surat
+        function goToPage2() {
+            document.getElementById('page1').style.display = 'none';
+            document.getElementById('page2').style.display = 'block';
+        }
+
+        // Efek klik surat menghilang & hujan kupu-kupu
+        function triggerButterflyShower() {
+            const letter = document.getElementById('mainLetter');
+            letter.style.opacity = '0';
+            letter.style.transform = 'translate(-50%, -30%) scale(0.9)';
+            letter.style.pointerEvents = 'none';
+            setInterval(createButterfly, 160);
+        }
+
+        function createButterfly() {
+            if (document.getElementById('page2').style.display === 'block') {
+                const bf = document.createElement('div');
+                bf.classList.add('butterfly');
+                bf.innerHTML = '🦋';
+                bf.style.left = Math.random() * 100 + 'vw';
+                const duration = Math.random() * 2 + 2.5;
+                bf.style.animationDuration = duration + 's';
+                document.body.appendChild(bf);
+                setTimeout(() => { bf.remove(); }, duration * 1000);
+            }
+        }
+
+        // Masuk ke halaman hitam "ALLO"
+        function goToPage3(event) {
+            event.stopPropagation();
+            document.getElementById('page2').style.display = 'none';
+            document.getElementById('page3').style.display = 'flex';
+            document.body.style.background = '#000000';
+            
+            for (let i = 0; i < 40; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                document.body.appendChild(star);
+            }
+        }
+
+        // Animasi Tumbuh Bunga
+        function growFlowers() {
+            document.getElementById('btnClickMe').style.display = 'none';
+            document.getElementById('garden').style.display = 'block';
+            
+            const arrow = document.createElement('div');
+            arrow.classList.add('arrow-indicator');
+            arrow.innerHTML = '👇';
+            document.getElementById('page3').appendChild(arrow);
+        }
+    </script>
+</body>
+</html>
