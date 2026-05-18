@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kado Untukmu - Anugrah Mikaila Cinta ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #f7a8b8; /* Pink background sesuai video */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            transition: background 1s ease;
+        }
+
+        /* --- HALAMAN 1: TOMBOL KADO --- */
+        #page1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .welcome-title {
+            font-family: 'Fredoka One', cursive;
+            color: #ffffff;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px rgba(0,0,0,0.1);
+        }
+
+        .gift-box {
+            font-size: 110px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            animation: bounce 2s infinite;
+            user-select: none;
+        }
+
+        .gift-box:hover {
+            transform: scale(1.1);
+        }
+
+        .click-hint {
+            margin-top: 25px;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-shadow: 1px 1px rgba(0,0,0,0.1);
+        }
+
+        /* --- HALAMAN 2: SURAT & BUKU DINO --- */
+        #page2 {
+            display: none;
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+
+        /* Layer Buku Dino (Berada di Belakang Surat) */
+        .dino-book-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 380px;
+            height: 500px;
+            background-color: #a3e635; /* Hijau muda terang sesuai video */
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            overflow: hidden;
+            border: 5px solid #ffffff;
+        }
+
+        .book-clouds {
+            position: absolute;
+            top: 10%;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            font-size: 30px;
+            opacity: 0.7;
+        }
+
+        .book-birds {
+            position: absolute;
+            top: 30%;
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 20px;
+        }
+
+        .dino-title {
+            font-family: 'Fredoka One', cursive;
+            color: #ffffff;
+            font-size: 2.5rem;
+            text-align: center;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px #15803d;
+        }
+
+        .dino-avatar {
+            font-size: 90px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .book-grass {
+            position: absolute;
+            bottom: -5px;
+            font-size: 45px;
+            letter-spacing: -4px;
+            opacity: 0.8;
+        }
+
+        /* Layer Surat Utama (Menutupi Buku) */
+        .letter-card {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 92%;
+            max-width: 400px;
+            background: #ffffff;
+            border-radius: 25px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            z-index: 2;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .main-hbd-title {
+            font-family: 'Fredoka One', cursive;
+            color: #ec4899;
+            font-size: 2.2rem;
+            margin-bottom: 2px;
+        }
+
+        .target-name {
+            font-size: 1.1rem;
+            color: #64748b;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        /* Teks Ucapan Persis Video */
+        .text-exact {
+            color: #334155;
+            font-size: 1rem;
+            line-height: 1.8;
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .heart-sign {
+            color: #ef4444;
+            font-size: 0.95rem;
+            margin-top: 15px;
+        }
+
+        .btn-action {
+            background: #ef4444;
+            color: white;
+            font-family: 'Fredoka One', cursive;
+            border: none;
+            padding: 12px 28px;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+            transition: 0.2s;
+        }
+
+        .btn-action:hover {
+            transform: scale(1.03);
+        }
+
+        /* Efek Hujan Kupu-Kupu Merah */
+        .butterfly {
+            position: fixed;
+            top: -10%;
+            font-size: 24px;
+            color: #ef4444;
+            z-index: 10;
+            pointer-events: none;
+            user-select: none;
+            animation: fall linear forwards;
+        }
+
+        /* --- HALAMAN 3: SCREEN HITAM "ALLO" --- */
+        #page3 {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .hallo-text {
+            font-family: 'Fredoka One', cursive;
+            color: #ffffff;
+            font-size: 4rem;
+            letter-spacing: 8px;
+            margin-bottom: 35px;
+            text-shadow: 0 0 15px rgba(255,255,255,0.3);
+        }
+
+        /* --- HALAMAN 4: KEBUN BUNGA MEKAR (HITAM BERBINTANG) --- */
+        .garden-container {
+            display: none;
+            position: relative;
+            width: 280px;
+            height: 300px;
+            margin-top: 20px;
+        }
+
+        /* Batang Utama Tengah */
+        .stem-center {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            background: #0d9488;
+            border-radius: 4px;
+            animation: growStemCenter 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        /* Kelopak Bunga Tengah */
+        .flower-center {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: #f43f5e;
+            border-radius: 50%;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            animation: bloom 1s 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            box-shadow: 0 0 20px #f43f5e;
+        }
+
+        .flower-center::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: #fef08a;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Batang Samping Kiri */
+        .stem-left {
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 5px;
+            background: #0d9488;
+            border-radius: 4px;
+            transform-origin: bottom center;
+            transform: rotate(-15deg);
+            animation: growStemSide 1.8s 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        /* Kelopak Bunga Kiri */
+        .flower-left {
+            position: absolute;
+            width: 45px;
+            height: 45px;
+            background: #ec4899;
+            border-radius: 50%;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            animation: bloom 1s 2.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            box-shadow: 0 0 15px #ec4899;
+        }
+
+        .flower-left::after {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: #fef08a;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Batang Samping Kanan */
+        .stem-right {
+            position: absolute;
+            bottom: 0;
+            right: 25%;
+            width: 5px;
+            background: #0d9488;
+            border-radius: 4px;
+            transform-origin: bottom center;
+            transform: rotate(15deg);
+            animation: growStemSide 1.8s 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        /* Kelopak Bunga Kanan */
+        .flower-right {
+            position: absolute;
+            width: 45px;
+            height: 45px;
+            background: #ec4899;
+            border-radius: 50%;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            animation: bloom 1s 2.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            box-shadow: 0 0 15px #ec4899;
+        }
+
+        .flower-right::after {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: #fef08a;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Daun-daun Hijau */
+        .leaf-bush {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width
